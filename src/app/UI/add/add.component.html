@@ -1,0 +1,75 @@
+<form #addTaskForm='ngForm'>
+  <div class="row divMargin">
+    <div class = "col-sm-2 text-left">
+        <label for="Taskname">Task:</label>
+    </div>
+    <div class="col-sm-4">
+        <input type ="text" class ="form-control" #taskName = "ngModel" placeholder="Task" required name="inputTask"   [(ngModel)] = Task.TaskName/>
+        <div *ngIf="taskName.invalid && taskName.touched" class="alert alert-danger">
+                Name is required.
+        </div>
+    </div>
+  </div>
+  <div class="row divMargin"  style="margin-bottom: 20px;" ></div>
+  <div class="row divMargin">
+      <div class = "col-sm-2 text-left">
+          <label for="ParentTaskname" >Parent Task:</label>
+      </div>
+      <div class="col-sm-4">
+          <select class ="form-control"name="inputParentTask" [(ngModel)] = Task.ParentTask_ID>
+              <option value="0">--Select--</option>
+              <option [value]="task.Id" *ngFor="let task of parenttask" >{{task.Value}}</option>
+        </select>   
+      </div>
+    </div>
+    <div class="row divMargin"  style="margin-bottom: 20px;" ></div>
+  <div class="row divMargin">
+      <div class = "col-sm-2 text-left">
+          <label for="Priority">Priority:</label>
+      </div>
+      <div class="col-sm-4">
+          <input type ="range" max="30" min="0" step="1" name="inputPriorityFrom" [(ngModel)] = Task.Priority  value="0"/>
+      </div>
+    </div>
+    <div class="row divMargin"  style="margin-bottom: 20px;" ></div>
+    <div class="row divMargin">
+      <div class = "col-sm-2 text-left">
+          <label for="startdate">Start Date:</label>
+      </div>
+      <div class="col-sm-4">
+          <input type ="datetime-local" class ="form-control" #startdate = "ngModel" name="inputStartDate" required [(ngModel)] = Task.Start_Date />
+          <br>
+          <div *ngIf="startdate.invalid && startdate.touched" class="alert alert-danger">
+                Start Date is required.
+        </div>
+      </div>
+    </div>
+    <div class="row divMargin"  style="margin-bottom: 20px;" ></div>
+    <div class="row divMargin">
+      <div class = "col-sm-2 text-left">
+          <label for="Enddate">End Date:</label>
+      </div>
+      <div class="col-sm-4">
+          <input type ="datetime-local" class ="form-control" #enddate = "ngModel" name="inputEndDate" required [(ngModel)] = Task.End_Date />
+          <br>
+          <div *ngIf="enddate.invalid && enddate.touched" class="alert alert-danger">
+                End Date is required.
+        </div>
+      </div>
+    </div>
+    <div class="row divMargin"  style="margin-bottom: 20px;" ></div>
+    <div class="row divMargin">
+        <div class = "col-sm-2 text-left">
+            
+        </div>
+        <div class="col-sm-4">
+            <Button class="btn btn-primay" [disabled]="addTaskForm.invalid" (click)="SumbitTask()">{{ButtonType}}</Button>
+            &nbsp;&nbsp;&nbsp;
+            <Button class="btn btn-primay" (click)="RestTask()">Reset</Button>
+        </div>
+        <div class="col-sm-4">            
+        </div>
+      </div>      
+      
+</form>
+
